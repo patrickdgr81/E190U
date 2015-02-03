@@ -2,6 +2,9 @@ Lab 1
 Introduction: In this lab we built the controllers using the pre-arranged kit we got. The controller I built more or less follows the sample design of the controller with two joysticks, 8 buttons, and a switch. It is extremely similar to the sample design on the lab.
 
 ![Aerial View](aerialView.JPG)
+![Front View](frontView.JPG)
+![Multimeter Test](multimeterTest.JPG)
+![Sanded Edges](sandedEdges.JPG)
 
 Design Methodology: From a hardware standpoint, I wanted the design to be easy to use. Thats why I had the lef joystick close to the left edge of the controller. The second joystick in my opinion is less likely to be utlized extensively, so I put it lower down on the controller. On the top right are 4 buttons, similar to how you would see it on a modern Xbox controller. There was an initial plan to mill some square holes in the wood to make the joystick as low as the buttons, but due to issues with machine shot access these plans had to be shelved. The edges are sanded so the controller feels nicer to grip. Seeing as there doesn't seem to be a whole lot of difference between my controller and the sample, I have only shown a few pictures to show that I did built it in time.
 
