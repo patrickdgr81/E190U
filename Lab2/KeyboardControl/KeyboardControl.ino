@@ -54,6 +54,9 @@ int rightPressed = 9;
 //flag for left joystick
 int movedLR = 0;
 int movedUD = 0;
+
+//switch value
+int switchValue = 1;
 void setup() {
   //enable debugging through print statements
   Serial.begin(9600);
@@ -115,17 +118,20 @@ void loop() {
   }
   if (movedLR == 0) {
     if (leftXValue > 600) {
-       Keyboard.write('a');
+       Keyboard.write('d');
        movedLR = 1;
     }
    if (leftXValue < 100) {
-       Keyboard.write('d');
+       Keyboard.write('a');
        movedLR = 1;
     }
   }
   
   int switchValue = digitalRead(Switch);
+  Serial.println(switchValue);
   //do something here if you have time
+  if (switchValue == 1) {
+    delay(100);
+  }
   
-  delay(50);
 }
