@@ -60,7 +60,7 @@ int switchValue = 1;
 void setup() {
   //enable debugging through print statements
   Serial.begin(9600);
-  
+  pinMode(13, OUTPUT); 
   //enable internal resistance, use as necessary
   pinMode(rightTrigger, INPUT_PULLUP);
   
@@ -70,6 +70,10 @@ void setup() {
 }
 
 void loop() {
+  //keep light on when running
+  digitalWrite(13, HIGH);
+  
+  //read in values for all buttons
   int rightTriggerValue = digitalRead(rightTrigger);
   int leftTriggerValue = digitalRead(leftTrigger);
   int UpValue = digitalRead(Up);
@@ -80,6 +84,8 @@ void loop() {
   int StartValue = digitalRead(Start);
   int SelectValue = digitalRead(Select);
   int rightJoyStick = digitalRead(rightPressed);
+  
+  //check if right trigger button is pressed
   if (oldrightTriggerValue != rightTriggerValue) {
     if (rightTriggerValue == HIGH) {
       Keyboard.write(0x20);
@@ -92,10 +98,13 @@ void loop() {
     }
     oldrightJoyStick = rightJoyStick;
   }
+  
+  //get right joystick values and move accordingly
   int rightYValue = analogRead(rightY);
   int rightXValue = analogRead(rightX);  
   Mouse.move((rightXValue-325)/8,(325-rightYValue)/8);
   
+  //get left joystick values and respond accordingly
   int leftYValue = analogRead(leftY);
   int leftXValue = analogRead(leftX);
   
