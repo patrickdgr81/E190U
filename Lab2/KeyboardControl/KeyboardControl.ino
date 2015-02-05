@@ -50,6 +50,10 @@ int leftPressed = 13;
 int rightY = A2;
 int rightX = A3;
 int rightPressed = 9;
+
+//flag for left joystick
+int movedLR = 0;
+int movedUD = 0;
 void setup() {
   //enable debugging through print statements
   Serial.begin(9600);
@@ -88,6 +92,40 @@ void loop() {
   int rightYValue = analogRead(rightY);
   int rightXValue = analogRead(rightX);  
   Mouse.move((rightXValue-325)/8,(325-rightYValue)/8);
-  //Mouse.move((leftXValue-325)/8,(leftYValue-325)/8);
-  delay(100);
+  
+  int leftYValue = analogRead(leftY);
+  int leftXValue = analogRead(leftX);
+  
+  if (leftYValue > 100 && leftYValue < 600) {
+    movedUD = 0;
+  }
+  if (movedUD == 0) {
+    if (leftYValue > 600) {
+       Keyboard.write('w');
+       movedUD = 1;
+    }
+   if (leftYValue < 100) {
+       Keyboard.write('s');
+       movedUD = 1;
+    }
+  }
+  
+  if (leftXValue > 100 && leftXValue < 600) {
+    movedLR = 0;
+  }
+  if (movedLR == 0) {
+    if (leftXValue > 600) {
+       Keyboard.write('a');
+       movedLR = 1;
+    }
+   if (leftXValue < 100) {
+       Keyboard.write('d');
+       movedLR = 1;
+    }
+  }
+  
+  int switchValue = digitalRead(Switch);
+  //do something here if you have time
+  
+  delay(50);
 }
