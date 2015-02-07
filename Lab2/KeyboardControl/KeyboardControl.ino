@@ -55,6 +55,7 @@ int rightPressed = 9;
 int movedLR = 0;
 int movedUD = 0;
 
+int totalDelay = 100;
 //switch value
 int switchValue = 1;
 void setup() {
@@ -63,7 +64,8 @@ void setup() {
   pinMode(13, OUTPUT); 
   //enable internal resistance, use as necessary
   pinMode(rightTrigger, INPUT_PULLUP);
-  
+  pinMode(Start, INPUT_PULLUP);
+  pinMode(Select, INPUT_PULLUP);
   // initialize mouse and keyboard control
   Mouse.begin();
   Keyboard.begin();
@@ -84,7 +86,21 @@ void loop() {
   int StartValue = digitalRead(Start);
   int SelectValue = digitalRead(Select);
   int rightJoyStick = digitalRead(rightPressed);
+  Serial.println(totalDelay);
   
+  if (oldSelectValue != SelectValue) {
+    if (SelectValue == HIGH && totalDelay > 2) {
+      totalDelay = totalDelay - 20;
+    }
+    oldSelectValue = SelectValue;
+  }
+  
+  if (oldStartValue != StartValue) {
+    if (StartValue == HIGH) {
+      totalDelay = totalDelay + 20;
+    }
+    oldStartValue = StartValue;
+  }
   //check if right trigger button is pressed
   if (oldrightTriggerValue != rightTriggerValue) {
     if (rightTriggerValue == HIGH) {
@@ -109,7 +125,7 @@ void loop() {
   int leftXValue = analogRead(leftX);
   
   if (leftYValue > 100 && leftYValue < 600) {
-    movedUD = 0;
+  movedUD = 0;
   }
   if (movedUD == 0) {
     if (leftYValue > 600) {
@@ -136,11 +152,12 @@ void loop() {
     }
   }
   
+  delay(totalDelay);
+  
   int switchValue = digitalRead(Switch);
-  Serial.println(switchValue);
   //do something here if you have time
   if (switchValue == 1) {
-    delay(100);
+    //?
   }
   
 }
