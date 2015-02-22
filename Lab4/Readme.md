@@ -26,5 +26,9 @@ The second change I did was make a second ball that oscillated just behind the t
 see motion blur.
 ![Normal](NoBlur.JPG)
 ##Results
-The results were as expected, the object be
-![Camping](Test.JPG)
+The results were as expected, if we blur a small amount, or 2/16 allowable, we get
+![Campng](SmallBlur.JPG)
+I'm not sure what goes on with the color, but if we blur a little more we get
+![Camng](SomeBlur.JPG)
+If we blur a lot, we get
+![Cmpng](ExtremeBlur.JPG)
