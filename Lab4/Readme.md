@@ -26,9 +26,9 @@ The second change I did was make a second ball that oscillated just behind the t
 see motion blur.
 ![Normal](NoBlur.JPG)
 ##Results
-The results were as expected, if we blur a small amount, or 2/16 allowable, we get
+The results were as expected, to adjust the motion blur press m to increase and n to decrease. If we blur a small amount, or 2/16 allowable, we get
 ![Campng](SmallBlur.JPG)
 Around the edges there is some noticable fuzziness. I'm not sure what goes on with the color, but if we blur a little more we get
 ![Camng](SomeBlur.JPG)
-If we blur as much as I currentl allow (16 on a scale of 16), we get
+If we blur as much as I currently allow (16 on a scale of 16), we get
 ![Cmpng](ExtremeBlur.JPG)
