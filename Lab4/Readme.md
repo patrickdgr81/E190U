@@ -28,7 +28,7 @@ see motion blur.
 ##Results
 The results were as expected, if we blur a small amount, or 2/16 allowable, we get
 ![Campng](SmallBlur.JPG)
-I'm not sure what goes on with the color, but if we blur a little more we get
+Around the edges there is some noticable fuzziness. I'm not sure what goes on with the color, but if we blur a little more we get
 ![Camng](SomeBlur.JPG)
-If we blur a lot, we get
+If we blur as much as I currentl allow (16 on a scale of 16), we get
 ![Cmpng](ExtremeBlur.JPG)
