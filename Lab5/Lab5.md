@@ -1,35 +1,13 @@
-#Summary
-In this lab I modified the sample code in hand.c to allow detection of hand movement.
-The actual code is in the repository opencv-hand-detection. I created a new variable in
-the struct ctx to store the previous found palm location. In each iteration of find_convex_hull,
-I update to the new palm location if there is one and check how much the palm moved.
+#Lab 5
+##Summary
+In this lab I created a program to detect hand movement.
+The actual code is in the repository opencv-hand-detection, file called bgfg_segm.cpp. In each iteration of find_convex_hull, I update to the new palm location if there is one and check how much the palm moved. However, this is too slow on the cpu, so I had to transition to the gpu instead. We start by reading a frame from the camera, then we run an iteration of gaussian blur and threshold on the GPU. The Gaussian blur was done with default paramters while the threshold was done by looking at only rgb values from 0 to 70 for r, 55 to 175 for g and 90 and 230 for b. This allows us to find the hand under most lighting conditions. Each time, we find the average pixel value of the hand to find the y coordinate of the hand and if the hand moved at all.
 
-The program was inconsisent in detecting the location of my hand. To resolve this, I relaxed the constraint that there must be 5 fingers found or else the display would not show it. Now if there are 4 or 5 fingers, the display will assume it is a hand. In the testing I did, there did not seem to be any nonhand objects being detected.
+##Background
+We were given some code in hand.c that already determined hand location somewhat reasonably. However, it was inconsistent because it required the algorithm to find 5 fingers before it does anything and is extremely slow. Under the code in revision "in process of converting from c to cpp" of hand.c, you can see at the bottom I ran some tests to determine what the slowest components of this process were. It turned out filtering and threshold took 2000 units of time, compared to roughly 500 from the entire rest of the algorithm. So this was why i decided to try to filter and process on gpu.
 
-<pre><code>
-hand moved right:0
-hand moved down:1
-hand moved right:3
-hand moved down:-1
-hand moved right:-3
-hand moved down:0
-hand moved right:-3
-hand moved down:-4
-hand moved right:-6
+## Sample Tests
+![Image](Test1Low.JPG)
+![Image](Test1High.JPG)
 
-hand moved right:295
-hand moved down:-170
-hand moved right:-345
-hand moved down:177
-hand moved right:32
-hand moved down:-69
-hand moved right:-22
-hand moved down:-35
-hand moved right:-18
-hand moved down:44
-hand moved right:29
-hand moved down:11
-
-</code></pre>
-
-![Image](SampleRun.JPG)
+As you can see the y value detected changed based on where the hand was. The hand detection is still suspect at different angles and different lightings.
